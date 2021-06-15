@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "28525258003",
+    "project_id": "qaeat-provider",
+    "storage_bucket": "qaeat-provider.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28525258003:android:f126d9b253f236cc52e6e6",
+        "android_client_info": {
+          "package_name": "com.wothoq.qaeatprovider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28525258003-ftclkg9up172iqqnpq1m4d8n4rvj2uc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXX1tfd5t72OvbRST1-dH7lAGKnc3cTxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28525258003-ftclkg9up172iqqnpq1m4d8n4rvj2uc4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

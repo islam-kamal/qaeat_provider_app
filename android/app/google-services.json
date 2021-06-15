@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "377318873522",
+    "firebase_url": "https://massara-provider.firebaseio.com",
+    "project_id": "massara-provider",
+    "storage_bucket": "massara-provider.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377318873522:android:cb7592026f8ff9adb82cab",
+        "android_client_info": {
+          "package_name": "com.wothoq.qaeatprovider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377318873522-sqo8s670e3lgid376kqkoefvso3k60fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNZniXJC-C3D2tjyzYRgYNb3bQXNYqdO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377318873522-sqo8s670e3lgid376kqkoefvso3k60fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377318873522:android:63d452a4296151bab82cab",
+        "android_client_info": {
+          "package_name": "com.app.massarra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377318873522-sqo8s670e3lgid376kqkoefvso3k60fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNZniXJC-C3D2tjyzYRgYNb3bQXNYqdO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377318873522-sqo8s670e3lgid376kqkoefvso3k60fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
