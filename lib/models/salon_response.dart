@@ -515,9 +515,9 @@ class Gallery {
 
 
 class SalonResponse {
-  bool status;
-  String errNum;
-  String msg;
+  var status;
+  var errNum;
+  var msg;
   Salon salon;
 
   SalonResponse({this.status, this.errNum, this.msg, this.salon});
@@ -542,20 +542,22 @@ class SalonResponse {
 }
 
 class Salon {
-  int id;
-  String name;
-  String username;
-  String email;
-  int payment;
-  String latitude;
-  String longitude;
-  String logo;
-  String tax;
-  int appCommission;
-  String address;
-  int cityId;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var name;
+  var username;
+  var email;
+  var payment;
+  var latitude;
+  var longitude;
+  var logo;
+  var tax;
+  var appCommission;
+  var address;
+  var cityId;
+  var categoryId;
+  var hallMaxNumber;
+  var createdAt;
+  var updatedAt;
   City city;
   List<Services> services;
   TotalRate totalRate;
@@ -575,6 +577,8 @@ class Salon {
         this.appCommission,
         this.address,
         this.cityId,
+        this.categoryId,
+        this.hallMaxNumber,
         this.createdAt,
         this.updatedAt,
         this.city,
@@ -596,6 +600,8 @@ class Salon {
     appCommission = json['app_commission'];
     address = json['address'];
     cityId = json['city_id'];
+    categoryId = json['category_id'];
+    hallMaxNumber = json['hall_max_number'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     city = json['city'] != null ? new City.fromJson(json['city']) : null;
@@ -636,6 +642,8 @@ class Salon {
     data['app_commission'] = this.appCommission;
     data['address'] = this.address;
     data['city_id'] = this.cityId;
+    data['category_id'] = this.categoryId;
+    data['hall_max_number'] = this.hallMaxNumber;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     if (this.city != null) {
@@ -658,8 +666,8 @@ class Salon {
 }
 
 class City {
-  int id;
-  String name;
+  var id;
+  var name;
 
   City({this.id, this.name});
 
@@ -677,16 +685,16 @@ class City {
 }
 
 class Services {
-  int id;
-  String name;
-  String details;
-  String icon;
-  int price;
-  String discount;
-  int payment;
-  int hallId;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var name;
+  var details;
+  var icon;
+  var price;
+  var discount;
+  var payment;
+  var hallId;
+  var createdAt;
+  var updatedAt;
 
   Services(
       {this.id,
@@ -730,11 +738,11 @@ class Services {
 }
 
 class TotalRate {
-  int id;
-  int value;
-  int hallId;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var value;
+  var hallId;
+  var createdAt;
+  var updatedAt;
 
   TotalRate({this.id, this.value, this.hallId, this.createdAt, this.updatedAt});
 
@@ -758,13 +766,13 @@ class TotalRate {
 }
 
 class Rates {
-  int id;
-  int value;
-  String comment;
-  int hallId;
-  int userId;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var value;
+  var comment;
+  var hallId;
+  var userId;
+  var createdAt;
+  var updatedAt;
   User user;
 
   Rates(
@@ -805,13 +813,13 @@ class Rates {
 }
 
 class User {
-  int id;
-  String name;
-  String email;
-  Null emailVerifiedAt;
-  String mobile;
-  Null createdAt;
-  Null updatedAt;
+  var id;
+  var name;
+  var email;
+  var emailVerifiedAt;
+  var mobile;
+  var createdAt;
+  var updatedAt;
 
   User(
       {this.id,
@@ -846,11 +854,11 @@ class User {
 }
 
 class Gallery {
-  int id;
-  int hallId;
-  String photo;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var hallId;
+  var photo;
+  var createdAt;
+  var updatedAt;
 
   Gallery({this.id, this.hallId, this.photo, this.createdAt, this.updatedAt});
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-void CustomSheet({BuildContext context, Widget widget}) {
+void CustomSheet({BuildContext context, Widget widget, double height}) {
   showModalBottomSheet(
       context: context,
       builder: (context) {
         return Container(
           color: Color(0xFF737373),
           child: Container(
-            height: MediaQuery.of(context).size.height / 2,
+            height:height?? MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
                 color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.only(

@@ -49,7 +49,7 @@ class _CommentsViewState extends State<CommentsView> {
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "ألمركز",
+                        "مقدم الخدمة",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
                       ),

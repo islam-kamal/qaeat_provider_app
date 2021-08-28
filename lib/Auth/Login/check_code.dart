@@ -1,4 +1,5 @@
 import 'package:Qaeat_Provider/Helper/color.dart';
+import 'package:Qaeat_Provider/components/CustomButton.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
@@ -25,7 +26,7 @@ class CheckCodeState extends State<CheckCode> {
   TextStyle style =
       TextStyle(color: Colors.black, fontFamily: 'Cairo', fontSize: 16);
   bool valid_code = false;
-
+String check_code;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +60,9 @@ class CheckCodeState extends State<CheckCode> {
           SizedBox(
             height: MediaQuery.of(context).size.width * 0.1,
           ),
+          Padding(padding: EdgeInsets.all(10),
+            child:   Text("ادخل رمز التفعيل الذى تم ارساله اليك",textAlign: TextAlign.end,),
+          ),
           Container(
               width: double.infinity,
               height: 100,
@@ -69,8 +73,11 @@ class CheckCodeState extends State<CheckCode> {
                   pinBoxColor: Colors.grey[200],
                   onDone: (String value) {
                     print("SSSSSSSSSSSS" + value);
-                    runservice(value);
+                  setState(() {
+                    check_code = value;
+                  });
                   },
+
                   defaultBorderColor: Theme.of(context).primaryColor,
                   pinBoxRadius: 10,
                   highlightPinBoxColor: Colors.grey[50],
@@ -81,6 +88,15 @@ class CheckCodeState extends State<CheckCode> {
                   textDirection: TextDirection.ltr,
                   keyboardType: TextInputType.phone,
                 ),
+              )),
+
+          Padding(padding: EdgeInsets.all(20),
+              child:  CustomButton(
+                onButtonPress: () {
+                  runservice(check_code);
+                },
+                raduis: 10,
+                text: "التالي",
               )),
         ],
       ),

@@ -108,7 +108,18 @@ class _EditServiceState extends State<EditService> {
 
   @override
   void initState() {
-    issCash = widget.services.payment == 1 ? 1 : 0;
+ //   issCash = widget.services.payment == 1 ? 1 : 0;
+    switch(widget.services.payment){
+      case 0 :
+        issCash = 0;
+        break;
+      case 1 :
+        issCash = 1;
+        break;
+      case 2 :
+        issCash = 2;
+        break;
+    }
     getData();
     super.initState();
   }
@@ -156,7 +167,7 @@ class _EditServiceState extends State<EditService> {
 
                             fit: logo == null ? BoxFit.cover : BoxFit.cover,
                             image: logo == null
-                                ? NetworkImage(widget.services.icon)
+                                ? AssetImage("assets/images/index.png")
                                 : FileImage(logo)),
                         border: Border.all(color: Colors.grey[500]),
                         borderRadius: BorderRadius.circular(5)),
@@ -204,59 +215,6 @@ class _EditServiceState extends State<EditService> {
                 lines: 5,
                 label: widget.services.details,
               ),
-  /*            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "اختيار القسم",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () => CustomSheet(
-                      context: context,
-                      widget: ListView.builder(
-                          itemCount: ress.categories.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  category_id = ress.categories[index].id;
-                                  category_name = ress.categories[index].name;
-                                });
-                                Navigator.pop(context);
-                              },
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "${ress.categories[index].name}",
-                                    style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        fontSize: 18),
-                                  ),
-                                  Divider()
-                                ],
-                              ),
-                            );
-                          })),
-                  child: Container(
-                    height: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        category_name ?? "${widget.services.name}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[500]),
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey[500])),
-                  ),
-                ),
-              ),*/
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -276,29 +234,8 @@ class _EditServiceState extends State<EditService> {
                   }
                 },
                 inputType: TextInputType.phone,
-                label: "${widget.services.price}",
+                label: "${widget.services.price} ريال  ",
               ),
-        /*      Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "الوقت المحدد للخدمة",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              CustomTextField(
-                onChanged: (String val) {
-                  setState(() {
-                    estimated_time = val;
-                  });
-                },
-                validate: (String val) {
-                  if (val == null) {
-                    return "الرجاء اكمال البيانات";
-                  }
-                },
-                inputType: TextInputType.phone,
-                label: "${widget.services.estimatedTime}",
-              ),*/
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -320,68 +257,10 @@ class _EditServiceState extends State<EditService> {
                 inputType: TextInputType.phone,
                 label: "${widget.services.discount}",
               ),
-         /*     Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "خدمات المنزل",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        house = !house;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        house == true
-                            ? Icon(Icons.radio_button_checked)
-                            : Icon(Icons.radio_button_unchecked),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            "متاح",
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        house = !house;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        house == false
-                            ? Icon(Icons.radio_button_checked)
-                            : Icon(Icons.radio_button_unchecked),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Text(
-                            "غير متاح",
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),*/
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "طرق الدفع",
+                  "طريقة الدفع",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -461,7 +340,7 @@ class _EditServiceState extends State<EditService> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30),
+                padding: const EdgeInsets.symmetric(vertical: 40),
                 child: InkWell(
                     onTap: () {
                       addService();

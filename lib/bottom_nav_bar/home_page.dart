@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:Qaeat_Provider/Helper/color.dart';
+import 'package:Qaeat_Provider/bottom_nav_bar/new_orders.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -146,7 +146,8 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
           alignment: Alignment.center,
           child: Text(
             'الرئيسية',
-            style: TextStyle(fontFamily: 'Cairo',color: Colors.white,fontSize: 16),
+            style: TextStyle(
+                fontFamily: 'Cairo', color: Colors.white, fontSize: 16),
           ),
         ),
         backgroundColor: QaeatColor.primary_color,
@@ -169,28 +170,28 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                 )
               : Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: MediaQuery.of(context).size.width/2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         height: 60,
                         decoration: BoxDecoration(
                             color: Colors.grey[200],
                             borderRadius: BorderRadius.circular(10)),
-                       child: Column(
-                         children: <Widget>[
-                           Text("اجمالي الربح"),
-                           Text(
-                             "${ress.hall[0].hallTotalRevenue} ريال",
-                             style: TextStyle(fontWeight: FontWeight.bold),
-                           ),
-                         ],
-                       ),
+                        child: Column(
+                          children: <Widget>[
+                            Text("اجمالي الربح"),
+                            Text(
+                              "${ress.hall[0].hallTotalRevenue} ريال",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width/2.5,
+                        width: MediaQuery.of(context).size.width / 2.5,
                         height: 60,
                         decoration: BoxDecoration(
                             color: Colors.grey[200],
@@ -204,125 +205,13 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                             ),
                           ],
                         ),
-                        ),
+                      ),
                     ],
                   ),
                 ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.05,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              AllServices(),
-                        ));
-                  },
-                  child: Container(
-                   width: MediaQuery.of(context).size.width/4,
-                    height: MediaQuery.of(context).size.height/7,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                      color: Theme.of(context).primaryColor,),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical:5 ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.content_cut,
-                            size: 35,
-                            color: Colors.white,
-                          ),
 
-                          Text(
-                            "الخدمات",
-                            style: TextStyle(color: Colors.white ,fontSize: 16 ,fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-               /* InkWell(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              Empolyee(),
-                        ));
-                  },
-                  child: Container(
-                   width: MediaQuery.of(context).size.width/4,
-                    height: MediaQuery.of(context).size.height/7,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                      color: Theme.of(context).primaryColor,),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical:5 ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.people,
-                            size: 35,
-                            color: Colors.white,
-                          ),
+          //---------------- Hall Pending Orders ------------------------------------
 
-                          Text(
-                            "الموظفين",
-                            style: TextStyle(color: Colors.white ,fontSize: 16 ,fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),*/
-                InkWell(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SalonImages(),
-                        ));
-                  },
-                  child: Container(
-                   width: MediaQuery.of(context).size.width/4,
-                    height: MediaQuery.of(context).size.height/7,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
-                      color: Theme.of(context).primaryColor,),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical:5 ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.image,
-                            size: 35,
-                            color: Colors.white,
-                          ),
-
-                          Text(
-                            "الصور",
-                            style: TextStyle(color: Colors.white ,fontSize: 16 ,fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.06,
-          ),
           isLoading == true
               ? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 50),
@@ -332,28 +221,10 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                     ),
                   ),
                 )
-              : ress.hall[0].rates.isEmpty
+              : ress.hall[0].order.isEmpty
                   ? Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              "لا توجد تعليقات ",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                          horizontal: 5, vertical: 5),
                       child: Container(
                         child: Column(
                           children: <Widget>[
@@ -362,7 +233,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                               height: 40,
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                    const EdgeInsets.symmetric(horizontal: 2),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -374,19 +245,19 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "الاسم",
+                                      "حاله الطلب",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "التعليقات",
+                                      "اسم الشخص",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "ألمركز",
+                                      "قبول  /  رفض",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
@@ -395,59 +266,149 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  border: Border.all(color: Colors.black),
+                                  color: QaeatColor.primary_color,
+                                  border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(10)),
                             ),
-                            ListView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: ress.hall[0].rates.length > 5
-                                    ? 5
-                                    : ress.hall[0].rates.length,
-                                itemBuilder: (context, index) {
-                                  return reviewRow(
-                                      ress.hall[0].rates[index].id,
-                                      ress.hall[0].rates[index].user.name,
-                                      ress.hall[0].rates[index].comment,
-                                      ress.hall[0].rates[index].value
-                                          .toDouble());
-                                }),
+                            Container(
+
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Center(
+                                  child: Text(
+                                    "لا توجد طلبات حالية",
+                                    style: TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.normal),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
+                            border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10)),
+                      )
+
+
+                      )
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Container(
+                                child: Text(
+                                  "قائمه الطلبات الحالية",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: double.infinity,
+                                  height: 40,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 2),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          "#1",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "حاله الطلب",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "اسم الشخص",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "قبول  /  رفض",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: QaeatColor.primary_color,
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: pendingOrders.length > 5
+                                        ? 5
+                                        : pendingOrders.length,
+                                    itemBuilder: (context, index) {
+                                      return penndingOrders(
+                                          id: pendingOrders[index].id,
+                                          userName:
+                                              pendingOrders[index].user.name,
+                                          userId: pendingOrders[index].user.id);
+                                    }),
+                                ButtonTheme(
+                                    minWidth:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height:
+                                        MediaQuery.of(context).size.width * 0.1,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      color: QaeatColor.primary_color,
+                                      child: Text(
+                                        'المزيد  ',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Cairo',
+                                            fontWeight: FontWeight.normal),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NewOrders()));
+                                      },
+                                    )),
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10)),
+                          )
+                        ],
                       )),
-       /*   SizedBox(
-            height: MediaQuery.of(context).size.height/17,
+
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.06,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "تعليقات الموظفين",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EmpCommentsView(
-                                  employees: ress.hall[0].employees,
-                                )));
-                  },
-                  child: Text(
-                    "عرض الكل ",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
+
+          //---------------- Hall Orders ------------------------------------
+
           isLoading == true
               ? Padding(
                   padding: const EdgeInsets.symmetric(vertical: 50),
@@ -457,43 +418,377 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                     ),
                   ),
                 )
-              : ress.hall[0].employees.isEmpty
+              : ress.hall[0].order.isEmpty
                   ? Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              "لا توجد  تعليقات للموظفين ",
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 5, vertical: 5),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      height: 40,
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 2),
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "#1",
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
+                            Text(
+                              "حاله الطلب",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "اسم الشخص",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "التاريخ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "الوقت",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: QaeatColor.primary_color,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: Text(
+                            "لا توجد طلبات ",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
                           ),
                         ),
                       ),
-                    )
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+              )
+
+
+          )
                   : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: ress.hall[0].employees.length > 3
-                              ? 3
-                              : ress.hall[0].employees.length,
-                          itemBuilder: (context, index) {
-                            return EmployeesRow(index);
-                          })),*/
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Container(
+                                child: Text(
+                                  "قائمه الطلبات ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: double.infinity,
+                                  height: 40,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 2),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          "#1",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "حاله الطلب",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "اسم الشخص",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "التاريخ",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "الوقت",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: QaeatColor.primary_color,
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: ress.hall[0].order.length > 5
+                                        ? 5
+                                        : ress.hall[0].order.length,
+                                    itemBuilder: (context, index) {
+                                      return orderRow(
+                                          id: ress.hall[0].order[index].id,
+                                          status:
+                                              ress.hall[0].order[index].status,
+                                          userName: ress
+                                              .hall[0].order[index].user.name,
+                                          date: ress.hall[0].order[index].date,
+                                          time: ress.hall[0].order[index].time);
+                                    }),
+                                ButtonTheme(
+                                    minWidth:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height:
+                                        MediaQuery.of(context).size.width * 0.1,
+                                    child: RaisedButton(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      color: QaeatColor.primary_color,
+                                      child: Text(
+                                        'المزيد  ',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Cairo',
+                                            fontWeight: FontWeight.normal),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NewOrders()));
+                                      },
+                                    )),
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10)),
+                          )
+                        ],
+                      )),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.06,
+          ),
+
+          //---------------- Hall Rates ------------------------------------
+          isLoading == true
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 50),
+                  child: Center(
+                    child: SpinKitThreeBounce(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                )
+              : ress.hall[0].rates.isEmpty
+                  ? Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 5, vertical: 5),
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      height: 40,
+                      child: Padding(
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 2),
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "#1",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "اسم الشخص",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "التعليقات",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "تقييم القاعة",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: QaeatColor.primary_color,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: Text(
+                            "لا توجد تعليقات حاليا ",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10)),
+              )
+
+
+          )
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Container(
+                                child: Text(
+                                  "قائمه التقييمات",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  width: double.infinity,
+                                  height: 40,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Text(
+                                          "#1",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "اسم الشخص",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "التعليقات",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "تقييم القاعة",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: QaeatColor.primary_color,
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(10)),
+                                ),
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: ress.hall[0].rates.length > 5
+                                        ? 5
+                                        : ress.hall[0].rates.length,
+                                    itemBuilder: (context, index) {
+                                      return reviewRow(
+                                          ress.hall[0].rates[index].id,
+                                          ress.hall[0].rates[index].user.name,
+                                          ress.hall[0].rates[index].comment,
+                                          ress.hall[0].rates[index].value
+                                              .toDouble());
+                                    }),
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(10)),
+                          )
+                        ],
+                      )),
+
         ],
       ),
     );
   }
 
-  Widget penndingOrders(int id, String status, String userName, int userId) {
+  Widget penndingOrders({int id, String userName, int userId}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
@@ -512,7 +807,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 6,
+              width: MediaQuery.of(context).size.width / 8,
               child: Center(
                 child: Text(
                   "معلق",
@@ -521,7 +816,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 5,
+              width: MediaQuery.of(context).size.width / 3.5,
               child: Center(
                 child: Text(
                   "${userName}",
@@ -584,7 +879,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
   }
 
   Widget orderRow(
-      int id, int status, String userName, String time, String date) {
+      {int id, int status, String userName, String time, String date}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
@@ -592,9 +887,10 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
         height: 40,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width / 15,
+              width: MediaQuery.of(context).size.width / 12,
               child: Center(
                 child: Text(
                   "${id}",
@@ -605,14 +901,16 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 6,
+              width: MediaQuery.of(context).size.width / 5,
               child: Center(
                 child: Text(
                   status == 1
                       ? "مقبول"
                       : status == 2
                           ? "مرفوض"
-                          : status == 3 ? "ملغية" : "مكتملة",
+                          : status == 3
+                              ? "ملغية"
+                              : "مكتملة",
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -620,7 +918,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 5,
+              width: MediaQuery.of(context).size.width / 3.5,
               child: Center(
                 child: Text(
                   "${userName}",
@@ -677,7 +975,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width / 10,
+              width: MediaQuery.of(context).size.width / 12,
               child: Center(
                 child: Text(
                   " #${id}",
@@ -687,7 +985,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 5,
+              width: MediaQuery.of(context).size.width / 3,
               child: Center(
                 child: Text(
                   "${userName}",
@@ -707,7 +1005,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 6,
+              width: MediaQuery.of(context).size.width / 8,
               child: Center(
                   child: Text(
                 "${Rate}",

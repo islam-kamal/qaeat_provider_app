@@ -15,16 +15,18 @@ class More extends StatefulWidget {
 class _MoreState extends State<More> {
   @override
   Widget build(BuildContext context) {
+
     Widget item(Widget icon, String lable) {
       return Container(
-        width: 70,
-        height: 70,
+        width: MediaQuery.of(context).size.width * 0.5,
+        height: MediaQuery.of(context).size.width * 0.5,
+        padding: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(10)),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Column(
+        borderRadius: BorderRadius.only(
+        topRight: Radius.circular(20),
+          topLeft: Radius.circular(20)),
+        ),
+        child:  Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -34,7 +36,6 @@ class _MoreState extends State<More> {
                 style: TextStyle(color: Colors.white, fontSize: 15),
               ),
             ],
-          ),
         ),
       );
     }

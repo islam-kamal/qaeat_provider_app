@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -23,30 +23,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^0.5.1+1
-  carousel_slider: ^2.2.1
-  flutter_spinkit: ^4.0.0
-  google_maps_flutter: ^0.5.16
-  geolocator: ^4.0.0
-  location_permissions: ^2.0.2
-  location: ^2.3.5
-  url_launcher: ^5.4.7
-  ff_navigation_bar: ^0.1.5
-  flutter_slidable: ^0.5.5
-  image_picker: ^0.6.7+4
-  map_launcher: ^0.10.0
-  firebase_messaging: ^6.0.16
-  notification_permissions: ^0.4.7
-  cupertino_icons: ^0.1.2
-  grouped_buttons: ^1.0.4
-  overlay_container: ^0.0.4+1
+  shared_preferences:
+  carousel_slider:
+  flutter_spinkit:
+  google_maps_flutter:
+  geolocator:
+  location_permissions:
+  location:
+  url_launcher:
+  ff_navigation_bar:
+  flutter_slidable:
+  image_picker:
+  map_launcher:
+  firebase_messaging:
+  notification_permissions:
+  cupertino_icons:
+  grouped_buttons:
+  overlay_container:
   intl: ^0.16.0
-  flutter_staggered_animations: ^0.1.2
-  pin_code_text_field: ^1.6.0
-  fluttertoast: ^7.0.4
-  dio: ^3.0.9
+  flutter_staggered_animations: 1.0.0
+  pin_code_text_field:
+  fluttertoast:
+  dio:
+  bottom_navy_bar: ^6.0.0
+  geocoder:
 
-
+dependency_overrides:
+  intl: ^0.17.0-nullsafety.2
+  http: ^0.13.1
+  image_picker : 0.7.0-nullsafety
 dev_dependencies:
   flutter_test:
     sdk: flutter

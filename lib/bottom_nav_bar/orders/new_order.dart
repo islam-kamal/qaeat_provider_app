@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:Qaeat_Provider/Helper/color.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -27,7 +28,7 @@ class _NewOrderViewState extends State<NewOrderView> {
   void getData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     FormData formData = FormData.fromMap({
-      "token": preferences.getString("token"),
+     "token": preferences.getString("token"),
       "hall_id": preferences.getInt("id"),
       "status": widget.status == "new"
           ? 0
@@ -190,7 +191,7 @@ class _NewOrderViewState extends State<NewOrderView> {
                   ),
                 ],
               ),
-              Row(
+             /* Row(
                 children: <Widget>[
                   Icon(
                     Icons.person_add,
@@ -203,7 +204,8 @@ class _NewOrderViewState extends State<NewOrderView> {
                       style: TextStyle(fontSize: 17),
                     ),
                   ),
-                /*  Container(
+                */
+             /*  Container(
                     width: 80,
                     height: 30,
                     child: Center(
@@ -217,8 +219,9 @@ class _NewOrderViewState extends State<NewOrderView> {
                         borderRadius: BorderRadius.circular(5),
                         color: Colors.grey[200]),
                   )*/
+             /*
                 ],
-              ),
+              ),*/
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -276,12 +279,13 @@ class _NewOrderViewState extends State<NewOrderView> {
                               height: 30,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: Theme.of(context).primaryColor),
+                                  border: Border.all(color: QaeatColor.primary_color),
+                                  color: Colors.white),
                               child: Center(
                                 child: Text(
                                   "رفض",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: QaeatColor.primary_color,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),

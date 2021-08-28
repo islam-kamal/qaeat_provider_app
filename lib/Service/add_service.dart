@@ -88,7 +88,8 @@ class _AddServiceState extends State<AddService> {
           function: () {
             Navigator.pop(context);
           });
-    } /*else if (booking_before == null) {
+    }
+    /*else if (booking_before == null) {
       errorDialog(
           context: context,
           text: "الرجاء اختيا طريقة الحجز ",
@@ -102,21 +103,24 @@ class _AddServiceState extends State<AddService> {
           function: () {
             Navigator.pop(context);
           });
-    } */else if (price == null) {
+    } */
+    else if (price == null) {
       errorDialog(
           context: context,
           text: "الرجاء سعر الخدمة",
           function: () {
             Navigator.pop(context);
           });
-    } else if (discount == null) {
+    }
+    else if (discount == null) {
       errorDialog(
           context: context,
           text: "الرجاء نسبة الخصم",
           function: () {
             Navigator.pop(context);
           });
-    } /*else if (estimated_time == null) {
+    }
+    /*else if (estimated_time == null) {
       errorDialog(
           context: context,
           text: "الرجاء ادخال مدة الخدمة بالدقائق",
@@ -130,7 +134,8 @@ class _AddServiceState extends State<AddService> {
           function: () {
             Navigator.pop(context);
           });
-    }*/ else if (logo == null) {
+    }*/
+    else if (logo == null) {
       errorDialog(
           context: context,
           text: "الرجاء ادراج صورة الخدمة",
@@ -237,7 +242,7 @@ class _AddServiceState extends State<AddService> {
                       image: DecorationImage(
                           fit: logo == null ? BoxFit.contain : BoxFit.cover,
                           image: logo == null
-                              ? AssetImage("assets/images/logo.png")
+                              ? AssetImage("assets/images/index.png")
                               : FileImage(logo)),
                       border: Border.all(color: Colors.grey[500]),
                       borderRadius: BorderRadius.circular(5)),
@@ -251,16 +256,17 @@ class _AddServiceState extends State<AddService> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            CustomTextField(
+            Padding(
+                padding: const EdgeInsets.only(right:8.0),
+                child:CustomTextField(
               controller: nameController,
               onChanged: (String val) {
                 setState(() {
                   name = val;
                 });
               },
-
               label: "اسم الخدمة",
-            ),
+            )),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -268,7 +274,9 @@ class _AddServiceState extends State<AddService> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            CustomTextField(
+            Padding(
+                padding: const EdgeInsets.only(right:8.0),
+                child: CustomTextField(
               controller: detailsController,
               onChanged: (String val) {
                 setState(() {
@@ -277,7 +285,7 @@ class _AddServiceState extends State<AddService> {
               },
               lines: 5,
               label: "تفاصيل الخدمة",
-            ),
+            )),
          /*   Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -337,7 +345,9 @@ class _AddServiceState extends State<AddService> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            CustomTextField(
+            Padding(
+                padding: const EdgeInsets.only(right:8.0),
+                child: CustomTextField(
               controller: priceController,
               onChanged: (String val) {
                 setState(() {
@@ -346,7 +356,7 @@ class _AddServiceState extends State<AddService> {
               },
               inputType: TextInputType.phone,
               label: "سعر الخدمة",
-            ),
+            )),
          /*   Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -368,11 +378,13 @@ class _AddServiceState extends State<AddService> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "نسبة الخصم على الخدمة ",
+                "خصم على الخدمة ",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            CustomTextField(
+            Padding(
+                padding: const EdgeInsets.only(right:8.0),
+                child:CustomTextField(
               controller: bounsController,
               onChanged: (String val) {
                 setState(() {
@@ -381,8 +393,8 @@ class _AddServiceState extends State<AddService> {
               },
 
               inputType: TextInputType.phone,
-              label: " نسبة الخصم على الخدمة ",
-            ),
+              label: "اكتب خصم الخدمه ان وجد ",
+            )),
            /* Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -448,17 +460,20 @@ class _AddServiceState extends State<AddService> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            Row(
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:Row(
               children: [
                 InkWell(
                   onTap: () {
                     setState(() {
-                      issCash = 1;
+                      issCash = 0;
+                      print("issCash : ${issCash}");
                     });
                   },
                   child: Row(
                     children: [
-                      issCash == 1
+                      issCash == 0
                           ? Icon(Icons.check_box)
                           : Icon(Icons.check_box_outline_blank),
                       Padding(
@@ -478,12 +493,14 @@ class _AddServiceState extends State<AddService> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      issCash = 0;
+                      issCash = 1;
+                      print("issCash : ${issCash}");
+
                     });
                   },
                   child: Row(
                     children: [
-                      issCash == 0
+                      issCash == 1
                           ? Icon(Icons.check_box)
                           : Icon(Icons.check_box_outline_blank),
                       Padding(
@@ -504,6 +521,8 @@ class _AddServiceState extends State<AddService> {
                   onTap: () {
                     setState(() {
                       issCash = 2;
+                      print("issCash : ${issCash}");
+
                     });
                   },
                   child: Row(
@@ -523,9 +542,9 @@ class _AddServiceState extends State<AddService> {
                   ),
                 ),
               ],
-            ),
+            )),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             InkWell(
                 onTap: () {
@@ -534,6 +553,9 @@ class _AddServiceState extends State<AddService> {
                 child: CustomButton(
                   text: "اضافة ",
                 )),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),

@@ -65,11 +65,19 @@ class ResetPasswordState extends State<ResetPassword> {
           ),
         ),
       ),
-      body: Form(
+      body: Directionality(
+    textDirection: TextDirection.rtl,
+    child: Form(
         key: _formSiginKey,
         child: ListView(
           children: <Widget>[
-            page_header(),
+        //   page_header(),
+            Padding(padding: EdgeInsets.only(top: 20,left: 10,right: 10,bottom: 20),
+              child:   Text("قم بكتابة كلمة المرور الجديدة",),
+            ),
+            Padding(padding: EdgeInsets.all(10),
+              child:   Text("كلمة المرور",),
+            ),
             CustomTextField(
               validate: (String val) {
                 if (val.trim() == "" || val.length < 6) {
@@ -81,9 +89,12 @@ class ResetPasswordState extends State<ResetPassword> {
                   _password = val;
                 });
               },
-              label: "كلمةالمرور ",
+              label: "************",
               secureText: true,
-              icon: Icon(Icons.lock),
+              suffixIcon: Icon(Icons.remove_red_eye),
+            ),
+            Padding(padding: EdgeInsets.all(10),
+              child:   Text("اعادة كتابة كلمة المرور",),
             ),
             CustomTextField(
               validate: (String val) {
@@ -96,23 +107,24 @@ class ResetPasswordState extends State<ResetPassword> {
                   _confirm_password = val;
                 });
               },
-              label: " تأكيد كلمة المرور ",
+              label: "************",
               secureText: true,
-              icon: Icon(Icons.lock),
+              suffixIcon: Icon(Icons.remove_red_eye),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SalonicLogin()));
-              },
-              child: CustomButton(
-                raduis: 10,
-                text: "تحقق",
-              ),
-            ),
+           Padding(padding: EdgeInsets.only(top: 30),
+               child:  InkWell(
+             onTap: () {
+               Navigator.push(context,
+                   MaterialPageRoute(builder: (context) => SalonicLogin()));
+             },
+             child: CustomButton(
+               raduis: 10,
+               text: "تغيير",
+             ),
+           ),)
           ],
         ),
-      ),
+    )),
     );
   }
 

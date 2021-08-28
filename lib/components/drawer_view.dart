@@ -92,7 +92,9 @@ class _MyDrawerState extends State<MyDrawer> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                  image: NetworkImage(image),
+                                  image:image ==null ? AssetImage('assets/images/qaeat_splash.png')
+                                    : NetworkImage(image),
+                                  //NetworkImage(image),
                                   fit: BoxFit.cover)),
                         ),
                       ),
@@ -108,6 +110,8 @@ class _MyDrawerState extends State<MyDrawer> {
                       style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
                   ),
+            SizedBox(height: MediaQuery.of(context).size.width * 0.1,),
+
             AnimationLimiter(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -125,9 +129,9 @@ class _MyDrawerState extends State<MyDrawer> {
                             child: index == 0
                                 ? item(
                                     Icon(
-                                      Icons.attach_money,
-                                      size: 25,
-                                      color: Colors.white,
+                                      Icons.monetization_on,
+                                      size: 30,
+                                      color: Colors.black,
                                     ),
                                     "الحسابات", () {
                                     Navigator.push(
@@ -140,22 +144,24 @@ class _MyDrawerState extends State<MyDrawer> {
                                     ? item(
                                         Icon(
                                           Icons.person,
-                                          size: 25,
-                                          color: Colors.white,
+                                          size: 30,
+                                          color: Colors.black,
                                         ),
                                         "تعديل الحساب", () {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Setting()));
+                                                    Setting(
+                                                      route: 'drawer',
+                                                    )));
                                       })
-                                    : index == 3
+                                    : index == 2
                                             ? item(
                                                 Icon(
                                                   Icons.content_cut,
-                                                  size: 25,
-                                                  color: Colors.white,
+                                                  size: 30,
+                                                  color: Colors.black,
                                                 ),
                                                 "الخدمات", () {
                                                 Navigator.push(
@@ -165,14 +171,14 @@ class _MyDrawerState extends State<MyDrawer> {
                                                           AllServices(),
                                                     ));
                                               })
-                                            : index == 5
+                                            : index == 3
                                                     ? item(
                                                         Icon(
                                                           Icons.image,
-                                                          size: 25,
-                                                          color: Colors.white,
+                                                          size: 30,
+                                                          color: Colors.black,
                                                         ),
-                                                        "االصور", () {
+                                                        "الصور", () {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
@@ -180,30 +186,13 @@ class _MyDrawerState extends State<MyDrawer> {
                                                                   SalonImages(),
                                                             ));
                                                       })
-                                                    : index == 6
-                                                        ? item(
-                                                            Icon(
-                                                              Icons.call,
-                                                              size: 25,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            "تواصل معنا", () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            CallUs()));
-                                                          })
-                                                        : index == 7
+                                                        : index == 4
                                                             ? item(
                                                                 Icon(
-                                                                  Icons
-                                                                      .arrow_forward,
-                                                                  size: 25,
+                                                                  Icons.exit_to_app,
+                                                                  size: 30,
                                                                   color: Colors
-                                                                      .white,
+                                                                      .black,
                                                                 ),
                                                                 "تسجيل الخروج",
                                                                 () {
@@ -249,13 +238,22 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   Widget item(Widget icon, String lable, Function function) {
-    return InkWell(
+    return Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+    child: InkWell(
       onTap: function,
       child: Column(
         children: [
           Row(
             children: <Widget>[
-              icon,
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(7),
+                  
+                ),
+                padding: EdgeInsets.all(5),
+                child: icon,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
@@ -266,10 +264,13 @@ class _MyDrawerState extends State<MyDrawer> {
             ],
           ),
           Divider(
-            color: Colors.white,
+            color: Colors.grey.shade200,
+
+
           )
+
         ],
       ),
-    );
+    ),);
   }
 }

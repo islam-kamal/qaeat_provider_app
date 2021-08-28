@@ -80,7 +80,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               labelStyle: TextStyle(
                   fontSize: 12, color: Theme.of(context).primaryColor),
               hintStyle: TextStyle(
-                  fontSize: 12, color: Theme.of(context).primaryColor),
+                  fontSize: 12, color: Colors.grey),
               hintText: widget.hint),
           onChanged: widget.value,
         ),

@@ -30,6 +30,7 @@ class _NewOrdersState extends State<NewOrders> {
           children: <Widget>[
             CustomAppBar(
               titel: "الطلبات",
+
             ),
             Container(
               height: 60,
@@ -87,6 +88,7 @@ class _NewOrdersState extends State<NewOrders> {
             )
           ],
         ),
+
       ),
     );
   }

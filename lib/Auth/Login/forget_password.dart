@@ -85,14 +85,17 @@ class ForgetPassword_State extends State<ForgetPassword> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50),
                   child: Text(
-                    "لا تقلق اكتب بريدك الالكتروني الخاص بك و سنرسلها اليك ",
+                    "اكتب بريدك الالكتروني الخاص بك ",
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
+              ),
+              Padding(padding: EdgeInsets.all(10),
+                child:   Text("البريد الإلكتروني"),
               ),
               CustomTextField(
                 validate: (String val) {
@@ -105,16 +108,17 @@ class ForgetPassword_State extends State<ForgetPassword> {
                     _username = val;
                   });
                 },
-                label: "البريد الاكتروني",
+                label: "Example@gmail.com",
                 inputType: TextInputType.emailAddress,
               ),
-              CustomButton(
+          Padding(padding: EdgeInsets.all(20),
+            child:  CustomButton(
                 onButtonPress: () {
                   runservice();
                 },
                 raduis: 10,
                 text: "ارسال",
-              ),
+            )),
             ],
           ),
         ),

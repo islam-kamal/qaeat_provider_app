@@ -1,137 +1,10 @@
-/*
-class BounsListResponse {
-  bool status;
-  String errNum;
-  String msg;
-  List<Bouns> bouns;
 
-  BounsListResponse({this.status, this.errNum, this.msg, this.bouns});
-
-  BounsListResponse.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    errNum = json['errNum'];
-    msg = json['msg'];
-    if (json['bouns'] != null) {
-      bouns = new List<Bouns>();
-      json['bouns'].forEach((v) {
-        bouns.add(new Bouns.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['errNum'] = this.errNum;
-    data['msg'] = this.msg;
-    if (this.bouns != null) {
-      data['bouns'] = this.bouns.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Bouns {
-  String title;
-  int id;
-  String date;
-  String time;
-  int payment;
-  int taxPaid;
-  List<Services> services;
-  User user;
-
-  Bouns(
-      {this.title,
-        this.id,
-        this.date,
-        this.time,
-        this.payment,
-        this.taxPaid,
-        this.services,
-        this.user});
-
-  Bouns.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    id = json['id'];
-    date = json['date'];
-    time = json['time'];
-    payment = json['payment'];
-    taxPaid = json['tax_paid'];
-    if (json['services'] != null) {
-      services = new List<Services>();
-      json['services'].forEach((v) {
-        services.add(new Services.fromJson(v));
-      });
-    }
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['id'] = this.id;
-    data['date'] = this.date;
-    data['time'] = this.time;
-    data['payment'] = this.payment;
-    data['tax_paid'] = this.taxPaid;
-    if (this.services != null) {
-      data['services'] = this.services.map((v) => v.toJson()).toList();
-    }
-    if (this.user != null) {
-      data['user'] = this.user.toJson();
-    }
-    return data;
-  }
-}
-
-class Services {
-  int id;
-  int price;
-  String bonus;
-
-  Services({this.id, this.price, this.bonus});
-
-  Services.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    price = json['price'];
-    bonus = json['bonus'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['price'] = this.price;
-    data['bonus'] = this.bonus;
-    return data;
-  }
-}
-
-class User {
-  int id;
-  String name;
-
-  User({this.id, this.name});
-
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    return data;
-  }
-}
-*/
 
 
 class BounsListResponse {
-  bool status;
-  String errNum;
-  String msg;
+  var status;
+  var errNum;
+  var msg;
   Data data;
 
   BounsListResponse({this.status, this.errNum, this.msg, this.data});
@@ -156,15 +29,15 @@ class BounsListResponse {
 }
 
 class Data {
-  int appTotalRevenue;
-  int hallsTotalRevenue;
-  int appThisDayRevenue;
-  int hallThisDayRevenue;
-  int appThisMonthRevenue;
-  int hallThisMonthRevenue;
-  int ordersNumbers;
-  int orderMonthlyNumber;
-  int orderDailyNumber;
+  var appTotalRevenue;
+  var hallsTotalRevenue;
+  var appThisDayRevenue;
+  var hallThisDayRevenue;
+  var appThisMonthRevenue;
+  var hallThisMonthRevenue;
+  var ordersNumbers;
+  var orderMonthlyNumber;
+  var orderDailyNumber;
   List<Bouns> bouns;
 
   Data(
@@ -216,20 +89,20 @@ class Data {
 }
 
 class Bouns {
-  int id;
-  String title;
-  String date;
-  String time;
-  int payment;
-  int cost;
-  int totalBonus;
-  int totalCost;
-  String orderPaid;
-  int status;
-  int hallId;
-  int userId;
-  String createdAt;
-  String updatedAt;
+  var id;
+  var title;
+  var date;
+  var time;
+  var payment;
+  var cost;
+  var totalBonus;
+  var totalCost;
+  var orderPaid;
+  var status;
+  var hallId;
+  var userId;
+  var createdAt;
+  var updatedAt;
   List<Services> services;
   User user;
 
@@ -267,11 +140,13 @@ class Bouns {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['services'] != null) {
-      services = new List<Null>();
+      services = [];
       json['services'].forEach((v) {
         services.add(new Services.fromJson(v));
       });
+
     }
+
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
 
@@ -300,6 +175,7 @@ class Bouns {
     return data;
   }
 }
+/*
 class Services {
   int id;
   int price;
@@ -329,6 +205,100 @@ class User {
   String mobile;
   Null createdAt;
   Null updatedAt;
+
+  User(
+      {this.id,
+        this.name,
+        this.email,
+        this.emailVerifiedAt,
+        this.mobile,
+        this.createdAt,
+        this.updatedAt});
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    emailVerifiedAt = json['email_verified_at'];
+    mobile = json['mobile'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['email_verified_at'] = this.emailVerifiedAt;
+    data['mobile'] = this.mobile;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
+}*/
+
+class Services {
+  var id;
+  var name;
+  var details;
+  var icon;
+  var price;
+  var discount;
+  var payment;
+  var hallId;
+  var createdAt;
+  var updatedAt;
+
+  Services(
+      {this.id,
+        this.name,
+        this.details,
+        this.icon,
+        this.price,
+        this.discount,
+        this.payment,
+        this.hallId,
+        this.createdAt,
+        this.updatedAt});
+
+  Services.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    details = json['details'];
+    icon = json['icon'];
+    price = json['price'];
+    discount = json['discount'];
+    payment = json['payment'];
+    hallId = json['hall_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['details'] = this.details;
+    data['icon'] = this.icon;
+    data['price'] = this.price;
+    data['discount'] = this.discount;
+    data['payment'] = this.payment;
+    data['hall_id'] = this.hallId;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
+}
+
+class User {
+  var id;
+  var name;
+  var email;
+  var emailVerifiedAt;
+  var mobile;
+  var createdAt;
+  var updatedAt;
 
   User(
       {this.id,

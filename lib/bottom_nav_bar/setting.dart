@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:Qaeat_Provider/Helper/color.dart';
+import 'package:Qaeat_Provider/bottom_nav_bar/home_page.dart';
+import 'package:Qaeat_Provider/components/drawer_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,8 @@ import 'bottom_nav_bar.dart';
 
 class Setting extends StatefulWidget {
   final Function callback;
-
-  const Setting({Key key, this.callback}) : super(key: key);
+final String route;
+  const Setting({Key key, this.callback, this.route}) : super(key: key);
 
   @override
   _SettingState createState() => _SettingState();
@@ -32,12 +34,7 @@ class _SettingState extends State<Setting> {
   int issCash = 0;
   bool house = true;
   bool reservation = true;
-  String username,
-      address,
-      name,
-      update_password,
-      update_password_confirmation,
-      email;
+  String username, address, name, update_password, update_password_confirmation, email , hall_max_number;
   double lat, lng;
   var result = [];
 
@@ -111,15 +108,21 @@ class _SettingState extends State<Setting> {
     return  Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          centerTitle: true,
           title: Container(
             alignment: Alignment.center,
             child: Text(
-              "الاعدادات",
+              "الاعدادت",
               style: TextStyle(fontFamily: 'Cairo',color: Colors.white,fontSize: 16),
             ),
           ),
-
+          actions: [
+         widget.route == 'drawer'?   InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_forward_ios,color: Colors.white,),
+            ) : Container()
+          ],
           backgroundColor: QaeatColor.primary_color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -159,6 +162,7 @@ class _SettingState extends State<Setting> {
           ],
         ),
       ),
+
     );
   }
 
@@ -169,7 +173,7 @@ class _SettingState extends State<Setting> {
       physics: NeverScrollableScrollPhysics(),
       children: [
         Text(
-          "اسم المركز",
+          "اسم الحساب",
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         CustomTextField(
@@ -444,13 +448,34 @@ class _SettingState extends State<Setting> {
         editItemRow(
             lable: "تغير الموقع ",
             input: address ?? "${ress.salon.address}",
-            function: () => goToLocationScreen()),
-        CustomButton(
-          onButtonPress: () {
-            editData();
-          },
-          text: "حفظ التعديل",
-        )
+            function: () => goToLocationScreen()
+        ),
+
+    ress.salon.categoryId == 1? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(padding: EdgeInsets.all(10),
+              child:   Text("عدد الافراد"),
+            ),
+            CustomTextField(
+              onChanged: (String val) {
+                setState(() {
+                  hall_max_number = val;
+                });
+                print('hall_individuals : ${hall_max_number}');
+              },
+              inputType: TextInputType.number,
+              label: "${ress.salon.hallMaxNumber==null ? 100 : ress.salon.hallMaxNumber}",
+            ),
+          ],
+        ): Container(),
+   Padding(padding: EdgeInsets.only(top: 20),
+   child:      CustomButton(
+     onButtonPress: () {
+       editData();
+     },
+     text: "حفظ التعديل",
+   ),)
       ],
     );
   }
@@ -474,20 +499,23 @@ class _SettingState extends State<Setting> {
                 border: Border.all(color: Colors.grey[300])),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${input}",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    size: 15,
-                  ),
-                ],
-              ),
-            ),
+            child:  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                    flex:8,
+                    child:     Text(
+                      "${input}",
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    )),
+                Expanded(
+                    flex:1,
+                    child:  Icon(
+                      Icons.arrow_forward_ios,
+                      size: 15,
+                    ) ),
+              ],
+            ),),
           ),
         ],
       ),
@@ -523,6 +551,7 @@ class _SettingState extends State<Setting> {
       "Latitude": lat,
       "Longitude": lng,
       "address": address,
+      "hall_max_number" : hall_max_number
     });
     NetworkUtil _util = NetworkUtil();
     Response response = await _util.post("admin/salons/update", body: formData);

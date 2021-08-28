@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:Qaeat_Provider/Helper/color.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:Qaeat_Provider/Utils/NetWorkHelper.dart';
@@ -62,97 +64,82 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
           endDrawer: MyDrawer(),
           key: _drawerKey,
-          bottomNavigationBar: BottomNavigationBar(
-                showUnselectedLabels: true,
-                selectedIconTheme: IconThemeData(
-                    size: 26, color: Theme.of(context).primaryColor),
-                unselectedIconTheme: IconThemeData(size: 20, color: Colors.grey),
-                showSelectedLabels: true,
-                type: BottomNavigationBarType.shifting,
-                currentIndex: selectedPageIndex,
-                items: [
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.dashboard,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    activeIcon: Icon(
-                      Icons.dashboard,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text("الرئيسية",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                        ))),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.list,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    activeIcon: Icon(
-                      Icons.list,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text("الطلبات",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                        ))),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.notifications,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    activeIcon: Icon(
-                      Icons.notifications,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text("الاشعارات",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                        ))),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.settings,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    activeIcon: Icon(
-                      Icons.settings,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text("الاعدادات",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                        ))),
-                BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.person,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                    activeIcon: Icon(
-                      Icons.person,
-                      size: 30,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    title: Text("المزيد",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 11,
-                        ))),
-              ],
-              onTap: _onItemTapped),
+          bottomNavigationBar: BottomNavyBar(
+            selectedIndex: selectedPageIndex,
+            showElevation: true,
+            itemCornerRadius: 100,
+            curve: Curves.easeIn,
+            backgroundColor: QaeatColor.white_color,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            containerHeight: MediaQuery.of(context).size.width * 0.13,
+            onItemSelected:  _onItemTapped,
+            items: <BottomNavyBarItem>[
+              BottomNavyBarItem(
+                icon: Icon(
+                  Icons.house,
+                  color: selectedPageIndex==0? QaeatColor.white_color : QaeatColor.black_color,
+                ),
+                title: Text("الرئيسية",style: TextStyle(color: QaeatColor.white_color),),
+                activeColor: QaeatColor.primary_color,
+                textAlign: TextAlign.center,
+              ),
+              BottomNavyBarItem(
+                icon: Icon(
+                  Icons.receipt_long_outlined,
+                  color: selectedPageIndex==1? QaeatColor.white_color : QaeatColor.black_color,
+
+                ),
+                title: Text("طلباتى",style: TextStyle(color: QaeatColor.white_color)),
+                activeColor: QaeatColor.primary_color,
+                textAlign: TextAlign.center,
+
+              ),
+
+              BottomNavyBarItem(
+                icon: Icon(
+                  Icons.notifications,
+                  color: selectedPageIndex==2? QaeatColor.white_color : QaeatColor.black_color,
+
+                ),/*Image(
+              image: AssetImage('images/home/bell.png'),
+              color: widget.index==2? QaeatColor.white_color : QaeatColor.black_color,
+            ),*/
+                title: Text(
+                  "الاشعارات",style: TextStyle(color: QaeatColor.white_color),
+                ),
+                activeColor: QaeatColor.primary_color,
+                textAlign: TextAlign.center,
+
+              ),
+              BottomNavyBarItem(
+                icon:Icon(
+                  Icons.settings,
+                  color: selectedPageIndex==3? QaeatColor.white_color : QaeatColor.black_color,
+                ), /*Image(
+              image: AssetImage('images/home/notification.png',),
+              color: widget.index==3? QaeatColor.white_color : QaeatColor.black_color,
+            ),*/
+                title: Text( "الاعدادت",style: TextStyle(color: QaeatColor.white_color)),
+                activeColor:QaeatColor.primary_color,
+                textAlign: TextAlign.center,
+              ),
+
+              BottomNavyBarItem(
+                title: Text( "المزيد",style: TextStyle(color: Colors.white)),
+                icon: Icon(
+                  Icons.menu,
+                  color: selectedPageIndex==4? Colors.white : QaeatColor.black_color,
+                ),
+                /*Image(
+              image: AssetImage('images/home/home.png'),
+              color: widget.index==4? Colors.white : QaeatColor.black_color,
+            ),*/
+
+                activeColor:QaeatColor.primary_color,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
           body: pages[selectedPageIndex]),
     );
   }

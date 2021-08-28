@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -182,7 +183,7 @@ class _BounsListState extends State<BounsList> {
                                 : ress.data.bouns[index].services[0].price,
                             ress.data.bouns[index].services.isEmpty
                                 ? "0"
-                                : ress.data.bouns[index].services[0].bonus,
+                                : ress.data.bouns[index].services[0].,
                             ress.data.bouns[index].date,
                             ress.data.bouns[index].time),
                       ),
@@ -275,3 +276,4 @@ class _BounsListState extends State<BounsList> {
     );
   }
 }
+*/

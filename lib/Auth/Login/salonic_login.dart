@@ -66,6 +66,9 @@ class SalonicLogin_State extends State<SalonicLogin> {
             SizedBox(
               height: MediaQuery.of(context).size.width * 0.1,
             ),
+            Padding(padding: EdgeInsets.all(10),
+              child:   Text("البريد الإلكتروني"),
+            ),
             CustomTextField(
               onChanged: (String val) {
                 setState(() {
@@ -75,6 +78,9 @@ class SalonicLogin_State extends State<SalonicLogin> {
               },
               inputType: TextInputType.emailAddress,
               label: "البريد الإلكتروني",
+            ),
+            Padding(padding: EdgeInsets.all(10),
+              child:   Text("كلمة المرور"),
             ),
             CustomTextField(
               onChanged: (String val) {
@@ -86,6 +92,17 @@ class SalonicLogin_State extends State<SalonicLogin> {
               label: "كلمة المرور",
               secureText: true,
             ),
+
+            Padding(padding: EdgeInsets.only(top: 20),
+            child: InkWell(
+              onTap: () {
+                runservice();
+              },
+              child: CustomButton(
+                raduis: 10,
+                text: "دخول",
+              ),
+            ),),
             InkWell(
               onTap: () {
                 Navigator.push(context,
@@ -96,20 +113,10 @@ class SalonicLogin_State extends State<SalonicLogin> {
                 child: Text(
                   " نسيت كلمة المرور ؟",
                   style: TextStyle(color: Theme.of(context).primaryColor),
-                  textAlign: TextAlign.end,
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                runservice();
-              },
-              child: CustomButton(
-                raduis: 10,
-                text: "دخول",
-              ),
-            ),
-
             InkWell(
               onTap: () {
                 Navigator.push(context,
